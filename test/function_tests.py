@@ -23,10 +23,11 @@ class NewVistorTest(unittest.TestCase):
         )
         inputbox.send_keys("buy a book")
         inputbox.send_keys(Keys.ENTER)
-        sleep(1)
+        sleep(10)
         table = self.browser.find_element_by_id("id_list_table")
         rows = table.find_element_by_tag_name('tr')
-        self.assertTrue(any(row.text == '1: buy a book'for row in rows))
+        # 使用f即可使用花括号插入局部变量
+        self.assertTrue(any(row.text == '1: buy a book'for row in rows), f"New to-do item did not appear in table. Contents were:\n{table.text}")
         # self.fail 都会失败，生成指定的错误信息，这里是为了提醒测试结束
         self.fail('Finish the test!')
 

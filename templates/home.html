@@ -1,4 +1,16 @@
 <html>
-    <title>TO-DO lists</title>
-
+    <head>
+        <title>TO-DO lists</title>
+    </head>
+    <body>
+        <h1>Your TO-DO list</h1>
+        <form method="post">
+            <input name="item_text" id="id_new_item" placeholder="Enter a to--do item" />
+            <!--csrf 跨站请求伪造-->
+            {% csrf_token %}
+        </form>
+        <table id="id_list_table">
+            <tr><td>1:{{ new_item_text }}</td></tr>
+        </table>
+    </body>
 </html>

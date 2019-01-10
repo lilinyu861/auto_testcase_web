@@ -55,8 +55,7 @@ ROOT_URLCONF = 'auto_testcase_web.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,6 +63,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -78,7 +78,6 @@ WSGI_APPLICATION = 'auto_testcase_web.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        # 'USERNAME': 'root',
         'NAME': 'testdjango',
         'USER': 'root',
         'PASSWORD': 'root',
@@ -128,3 +127,7 @@ STATIC_URL = '/static/'
 
 # 导入template模板
 TEMPLATE_DTRS = os.path.join(os.path.dirname(__file__), 'templates')
+
+# 配置media
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

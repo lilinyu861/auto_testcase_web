@@ -128,6 +128,4 @@ STATIC_URL = '/static/'
 # 导入template模板
 TEMPLATE_DTRS = os.path.join(os.path.dirname(__file__), 'templates')
 
-# 配置media
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+

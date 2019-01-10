@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+
+</head>
+{% if Method == 'GET' %}
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <input type="submit" name="'register" value="register">
+    </form>
+{% else %}
+    {% if user_name %}
+        {{ user_name }} register is success!
+        <br>
+        <a href="http://127.0.0.1:8000/login">login</a>
+    {% else %}
+        {{ registerJudge }} is exist!
+        <br>
+        <a href="http://127.0.0.1:8000/register">register</a>
+    {% endif %}
+{% endif %}
+</body>
+</html>

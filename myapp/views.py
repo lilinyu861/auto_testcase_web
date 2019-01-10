@@ -1,12 +1,61 @@
 # Create your views here.
+from myapp.models import *
+from myapp.forms import Users, loginform
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render
-from myapp.models import User
+from django.template import RequestContext
 
 
+# create views
 def index(request):
-    return render_to_response('index.html', {"user_name": "lily"})
+    username = request.COOKIES.get('cookie_username', '')
+    return render_to_response('index.html', {'user_name': username})
 
 
-def user(request):
-    str = User.objects.get(name='lily').user_email
-    return render(request, 'user.html', {'str': str})
+def register(request):
+    method = request.method
+    if method == 'POST':
+        # 如果是post提交的动作，就将post中的数据赋值给user_form，供该函数使用
+        user_form = Users(request.POST)
+        if user_form.is_valid():
+            # 获取表单数据
+            username = user_form.cleaned_data['user_name']
+            useremail = user_form.cleaned_data['user_email']
+            userphone = user_form.cleaned_data['user_phone']
+            userpassowrd = user_form.cleaned_data['user_password']
+            try:
+                registerJudge = User.objects.filter(user_name=username).get().user_name
+                return render_to_response('register.html', {'registerJudge': registerJudge})
+            except:
+                # 添加到数据库
+                registerAdd = User.objects.create(user_name=username,
+                                                  user_emial=useremail,
+                                                  user_phone=userphone,
+                                                  user_password=userpassowrd)
+                return render_to_response('register.html', {'registerAdd': registerAdd,
+                                                            'user_name': username,
+                                                            'user_email': useremail})
+    else:
+        user_form = Users()
+    return render_to_response('register.html', {'user_form': user_form, 'Method': method}, RequestContext(request))
+
+
+def login(request):
+    if request.method == 'POST':
+        login_form = loginform(request.POST)
+        if login_form.is_valid():
+            useremail = login_form.cleaned_data['user_email']
+            password = login_form.cleaned_data['user_password']
+            # 对比输入的用户名和密码是否和数据库中一致
+            passwordJudge = User.objects.filter(user_name__exact=useremail,
+                                                user_password__exact=password)
+            if passwordJudge:
+                response = HttpResponseRedirect('/index/')
+                response.set_cookie('cookie_useremail', useremail, 3600)
+                return response
+            else:
+                return HttpResponse('login.html')
+    else:
+        login_form = loginform()
+    return render_to_response('login.html', {'login_form': login_form}, RequestContext(request))
+# context_instance=RequestContext(request)

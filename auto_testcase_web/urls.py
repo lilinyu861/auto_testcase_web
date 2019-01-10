@@ -22,6 +22,7 @@ from django.conf.urls import url
 
 urlpatterns = [
     url(r'^$', index),
-    url(r'^user/$', user),
+    url(r'^login/$', login),
+    url(r'^register/$', register),
     path('admin/', admin.site.urls),
 ]

@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class User(models.Model):
@@ -9,5 +8,5 @@ class User(models.Model):
     user_phone = models.CharField(max_length=11, verbose_name='user_phone')
     user_password = models.CharField(max_length=16, verbose_name='user_password')
 
-    def __str__(self):
+    def __unicode__(self):
         return self.user_name

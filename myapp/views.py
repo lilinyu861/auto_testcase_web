@@ -2,7 +2,7 @@
 from myapp.models import *
 from myapp.forms import Users, loginform
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 
@@ -22,16 +22,16 @@ def register(request):
             username = user_form.cleaned_data['user_name']
             useremail = user_form.cleaned_data['user_email']
             userphone = user_form.cleaned_data['user_phone']
-            userpassowrd = user_form.cleaned_data['user_password']
+            userpassword = user_form.cleaned_data['user_password']
             try:
                 registerJudge = User.objects.filter(user_name=username).get().user_name
                 return render_to_response('register.html', {'registerJudge': registerJudge})
             except:
                 # 添加到数据库
                 registerAdd = User.objects.create(user_name=username,
-                                                  user_emial=useremail,
+                                                  user_email=useremail,
                                                   user_phone=userphone,
-                                                  user_password=userpassowrd)
+                                                  user_password=userpassword)
                 return render_to_response('register.html', {'registerAdd': registerAdd,
                                                             'user_name': username,
                                                             'user_email': useremail})
@@ -45,10 +45,10 @@ def login(request):
         login_form = loginform(request.POST)
         if login_form.is_valid():
             useremail = login_form.cleaned_data['user_email']
-            password = login_form.cleaned_data['user_password']
+            userpassword = login_form.cleaned_data['user_password']
             # 对比输入的用户名和密码是否和数据库中一致
-            passwordJudge = User.objects.filter(user_name__exact=useremail,
-                                                user_password__exact=password)
+            passwordJudge = User.objects.filter(user_email__exact=useremail,
+                                                user_password__exact=userpassword)
             if passwordJudge:
                 response = HttpResponseRedirect('/index/')
                 response.set_cookie('cookie_useremail', useremail, 3600)

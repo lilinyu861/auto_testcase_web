@@ -23,6 +23,10 @@ def register(request):
             useremail = user_form.cleaned_data['user_email']
             userphone = user_form.cleaned_data['user_phone']
             userpassword = user_form.cleaned_data['user_password']
+            userpassword1 = user_form.cleaned_data['user_password1']
+            if userpassword != userpassword1:
+                errors = "两次密码输入不一致"
+                return render_to_response('register.html', {'errors': errors})
             try:
                 registerJudge = User.objects.filter(user_name=username).get().user_name
                 return render_to_response('register.html', {'registerJudge': registerJudge})
@@ -58,4 +62,8 @@ def login(request):
     else:
         login_form = loginform()
     return render_to_response('login.html', {'login_form': login_form}, RequestContext(request))
-# context_instance=RequestContext(request)
+
+
+def create_testcase(request):
+    if request.method == 'POST':
+        pass

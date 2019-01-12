@@ -126,6 +126,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# STATIC_ROOT 存放本地js/css/image
+HERE = os.path.dirname(os.path.dirname(__file__))
+STATIC_ROOT = 'http://127.0.0.1:8000/'
+STATIC_PATH = os.path.join(HERE, 'static').replace('\\', '/')
+
 # 导入template模板
 TEMPLATE_DTRS = os.path.join(os.path.dirname(__file__), 'templates')
 

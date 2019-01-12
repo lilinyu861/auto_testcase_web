@@ -5,11 +5,30 @@
     <title>Register</title>
 
 </head>
+<body>
+<div style="text-align: center">
+<h2> 请输入注册信息 </h2>
 {% if Method == 'GET' %}
     <form method="post">
         {% csrf_token %}
-        {{ user_form.as_p }}
-        <input type="submit" name="'register" value="register">
+{#        {{ user_form.as_p }}#}
+        <p>
+            <label for="register">用户名</label>
+            <input name="user_name" type="text" placeholder="输入用户名">
+        </p>
+        <p>
+            <label for="register">邮箱</label>
+            <input name="user_email" type="text" placeholder="输入用户邮箱">
+        </p>
+        <p>
+            <label for="register">密码</label>
+            <input name="user_password" type="text" placeholder="输入密码">
+        </p>
+        <p>
+            <label for="register">确认密码</label>
+            <input name="user_password1" type="text" placeholder="确认密码">
+        </p>
+        <input id="register" type="submit" name="'register" value="register">
     </form>
 {% else %}
     {% if user_name %}
@@ -22,5 +41,6 @@
         <a href="http://127.0.0.1:8000/register">register</a>
     {% endif %}
 {% endif %}
+</div>
 </body>
 </html>

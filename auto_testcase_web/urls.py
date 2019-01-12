@@ -21,8 +21,14 @@ from django.conf.urls import url
 
 
 urlpatterns = [
+    # index
     url(r'^$', index),
+
+    # login
     url(r'^login/$', login),
+
+    # register
     url(r'^register/$', register),
+
     path('admin/', admin.site.urls),
 ]

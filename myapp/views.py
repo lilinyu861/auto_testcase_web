@@ -2,7 +2,7 @@
 from myapp.models import *
 from myapp.forms import Users, loginform
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from django.template import RequestContext
 
 
@@ -21,7 +21,6 @@ def register(request):
             # 获取表单数据
             username = user_form.cleaned_data['user_name']
             useremail = user_form.cleaned_data['user_email']
-            userphone = user_form.cleaned_data['user_phone']
             userpassword = user_form.cleaned_data['user_password']
             userpassword1 = user_form.cleaned_data['user_password1']
             if userpassword != userpassword1:
@@ -34,7 +33,6 @@ def register(request):
                 # 添加到数据库
                 registerAdd = User.objects.create(user_name=username,
                                                   user_email=useremail,
-                                                  user_phone=userphone,
                                                   user_password=userpassword)
                 return render_to_response('register.html', {'registerAdd': registerAdd,
                                                             'user_name': username,
@@ -67,3 +65,7 @@ def login(request):
 def create_testcase(request):
     if request.method == 'POST':
         pass
+
+
+def base(request):
+    return render(request, 'base.html')

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from myapp.views import *
-from templates import *
+from myapp.templates import *
 from django.conf.urls import url
 
 
@@ -29,6 +29,9 @@ urlpatterns = [
 
     # register
     url(r'^register/$', register),
+
+    # base
+    url(r'^base/$', base),
 
     path('admin/', admin.site.urls),
 ]

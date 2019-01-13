@@ -5,7 +5,6 @@ class User(models.Model):
     # 用户信息
     user_name = models.CharField(max_length=100, blank=False, verbose_name='user_name')
     user_email = models.EmailField(max_length=255, blank=False, verbose_name='email_address')
-    user_phone = models.CharField(max_length=11, verbose_name='user_phone')
     user_password = models.CharField(max_length=16, blank=False, verbose_name='user_password')
 
     def __unicode__(self):
@@ -18,5 +17,5 @@ class User(models.Model):
 #     max_len = models.IntegerField(max_length=50)
 #     min_len = models.IntegerField(max_length=50)
 
-    def __unicode__(self):
-        return self.type
+    # def __unicode__(self):
+    #     return self.type

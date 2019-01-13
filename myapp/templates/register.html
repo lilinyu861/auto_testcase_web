@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link href="{% static 'bootstrap-4.2.1-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-4.2.1-dist/css/signin.css' %}" rel="stylesheet">
+</head>
+<body>
+<div style="text-align: center" class="form-signin">
+<h2>注册</h2>
+{% if Method == 'GET' %}
+    <form method="post" class="form-signin">
+        {% csrf_token %}
+{#        {{ user_form.as_p }}#}
+        <p>
+            <label for="register" class="sr-only">用户名</label>
+            <input class="form-control" name="user_name" type="text" placeholder="输入用户名">
+        </p>
+        <p>
+            <label for="register" class="sr-only">邮箱</label>
+            <input class="form-control" name="user_email" type="text" placeholder="输入邮箱">
+        </p>
+        <p>
+            <label for="register" class="sr-only">密码</label>
+            <input class="form-control" name="user_password" type="text" placeholder="输入密码">
+        </p>
+        <p>
+            <label class="sr-only" for="register">确认密码</label>
+            <input class="form-control" name="user_password1" type="text" placeholder="确认密码">
+        </p>
+        <input class="btn btn-primary btn-block" id="register" type="submit" name="'register" value="注册">
+    </form>
+{% else %}
+    {% if user_name %}
+        {{ user_name }} 注册成功!请点击登录去登录吧
+        <br>
+        <a href="http://127.0.0.1:8000/login">登录</a>
+    {% else %}
+        {{ registerJudge }} 注册失败，邮箱已注册
+        <br>
+        <a href="http://127.0.0.1:8000/register">注册</a>
+    {% endif %}
+{% endif %}
+</div>
+</body>
+</html>

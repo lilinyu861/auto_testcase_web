@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="{% static 'bootstrap-4.2.1-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-4.2.1-dist/css/signin.css' %}" rel="stylesheet">
+</head>
+<body>
+<div style="text-align: center">
+    <form class="form-signin" method="post">
+    <h2 class="form-signin-heading">登录</h2>
+    {% csrf_token %}
+    <p>
+        <label for="login" class="sr-only">邮箱</label>
+        <input class="form-control" name="user_email" type="text" placeholder="输入已注册邮箱">
+    </p>
+    <p>
+        <label for="login" class="sr-only">密码</label>
+        <input class="form-control" name="user_password" type="text" placeholder="输入密码">
+    </p>
+    <button class="btn-block btn btn-primary" id="login" type="submit">登录</button>
+{#    <input id="login" type="submit" value="登录">#}
+    <br>
+    <a href="http://127.0.0.1:8000/register">还没有账号，去注册</a>
+</form>
+</div>
+</body>
+</html>

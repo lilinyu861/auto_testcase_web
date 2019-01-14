@@ -5,44 +5,39 @@
     <meta charset="UTF-8">
     <title>Register</title>
     <link href="{% static 'bootstrap-4.2.1-dist/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'bootstrap-4.2.1-dist/css/signin.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-4.2.1-dist/css/bootstrap.css' %}" rel="stylesheet">
+    <script src="{% static 'bootstrap-4.2.1-dist/js/bootstrap.min.js'%}"></script>
 </head>
 <body>
-<div style="text-align: center" class="form-signin">
-<h2>注册</h2>
-{% if Method == 'GET' %}
-    <form method="post" class="form-signin">
-        {% csrf_token %}
-{#        {{ user_form.as_p }}#}
-        <p>
-            <label for="register" class="sr-only">用户名</label>
-            <input class="form-control" name="user_name" type="text" placeholder="输入用户名">
-        </p>
-        <p>
-            <label for="register" class="sr-only">邮箱</label>
-            <input class="form-control" name="user_email" type="text" placeholder="输入邮箱">
-        </p>
-        <p>
-            <label for="register" class="sr-only">密码</label>
-            <input class="form-control" name="user_password" type="text" placeholder="输入密码">
-        </p>
-        <p>
-            <label class="sr-only" for="register">确认密码</label>
-            <input class="form-control" name="user_password1" type="text" placeholder="确认密码">
-        </p>
-        <input class="btn btn-primary btn-block" id="register" type="submit" name="'register" value="注册">
-    </form>
-{% else %}
-    {% if user_name %}
-        {{ user_name }} 注册成功!请点击登录去登录吧
-        <br>
-        <a href="http://127.0.0.1:8000/login">登录</a>
+{# 导航栏#}
+{% include 'base.html' %}
+
+{# 注册界面 #}
+<div  class="container">
+    <h2 class="text-center text-black-50">注册</h2>
+
+    {% if Method == 'GET' %}
+        <div class="row justify-content-center">
+            <form method="post" class="col-md-3">
+                {% csrf_token %}
+                <div class="form-group"><input class="form-control" name="user_name" type="text" placeholder="输入用户名"></div>
+                <div class="form-group"><input class="form-control" name="user_email" type="email" placeholder="输入邮箱"></div>
+                <div class="form-group"><input class="form-control" name="user_password" type="password" placeholder="输入密码"></div>
+                <div class="form-group"><input class="form-control" name="user_password1" type="password" placeholder="确认密码"></div>
+                <div class="form-group"><input class="btn btn-primary btn-block" id="register" type="submit" name="'register" value="注册"></div>
+            </form>
+        </div>
     {% else %}
-        {{ registerJudge }} 注册失败，邮箱已注册
-        <br>
-        <a href="http://127.0.0.1:8000/register">注册</a>
+        {% if user_name %}
+            {{ user_name }} 注册成功!请点击登录去登录吧
+            <br>
+            <a href="http://127.0.0.1:8000/login">登录</a>
+        {% else %}
+            {{ registerJudge }} 注册失败，邮箱已注册
+            <br>
+            <a href="http://127.0.0.1:8000/register">注册</a>
+        {% endif %}
     {% endif %}
-{% endif %}
 </div>
 </body>
 </html>

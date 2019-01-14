@@ -1,39 +1,41 @@
-{% load staticfiles %}
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="description" content="">
-    <meta name="author" content="">
-{#    <link rel="icon" href="../../favicon.ico">#}
-
-    <title>Signin Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Index</title>
+    <script src="{% static 'bootstrap-4.2.1-dist/js/bootstrap.min.js'%}"></script>
     <link href="{% static 'bootstrap-4.2.1-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="{% static 'bootstrap-4.2.1-dist/css/signin.css' %}" rel="stylesheet">
-  </head>
+<body bgcolor="#f0ffff">
+{# 导航栏#}
+<!-- 定义导航栏 -->
+<nav class="navbar navbar-default" role="navigation">
+<div class="container-fluid">
+    <h3 class="text-muted">自动生成测试用例</h3>
+    <ul class="nav nav-stacked navbar-right nav-pills">
+        <li><a></a></li>
+        <li><a href="http://127.0.0.1:8000/">主页</a></li>
+        <li><a href="http://127.0.0.1:8000/tools">工具</a></li>
+        <li><a href="http://127.0.0.1:8000/framework">框架</a></li>
+        <li><a href="http://127.0.0.1:8000/blog">博客</a></li>
+        <li><a href="http://127.0.0.1:8000/userinfo">个人</a></li>
+        <li><a id="register" href="http://127.0.0.1:8000/register">注册</a></li>
+        <li><a id="register" href="http://127.0.0.1:8000/login">登录</a></li>
+    </ul>
+</div>
+</nav>
 
-  <body>
+{# 正文内容#}
+<div class="active">
 
-    <div class="container">
+</div>
 
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+{# 存放底层信息 #}
 
-    </div> <!-- /container -->
+</body>
+</html>
+

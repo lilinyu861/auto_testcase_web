@@ -56,7 +56,7 @@ def login(request):
                 response.set_cookie('cookie_useremail', useremail, 3600)
                 return response
             else:
-                return HttpResponse('login.html')
+                return HttpResponse('密码输入错误')
     else:
         login_form = loginform()
     return render_to_response('login.html', {'login_form': login_form}, RequestContext(request))

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 {% load staticfiles %}
 <html lang="en">
@@ -5,25 +6,26 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link href="{% static 'bootstrap-4.2.1-dist/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'bootstrap-4.2.1-dist/css/signin.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-4.2.1-dist/css/bootstrap.css' %}" rel="stylesheet">
+    <script src="{% static 'bootstrap-4.2.1-dist/js/bootstrap.min.js'%}"></script>
 </head>
 <body>
-<div style="text-align: center">
-    <form class="form-signin" method="post">
-    <h2 class="form-signin-heading">登录</h2>
-    {% csrf_token %}
-    <p>
-        <label for="login" class="sr-only">邮箱</label>
-        <input class="form-control" name="user_email" type="text" placeholder="输入已注册邮箱">
-    </p>
-    <p>
-        <label for="login" class="sr-only">密码</label>
-        <input class="form-control" name="user_password" type="text" placeholder="输入密码">
-    </p>
-    <button class="btn-block btn btn-primary" id="login" type="submit">登录</button>
-{#    <input id="login" type="submit" value="登录">#}
+{# 导航栏 #}
+{% include 'base.html' %}
+
+{# 登录界面 #}
+<div class="container">
+    <h2 class=" text-black-50 text-center">登录</h2>
+    <div class="row justify-content-center">
+        <form method="post" class="form-group col-md-3">
+            {% csrf_token %}
+            <div class="form-group"><input class="form-control" name="user_email" type="text" placeholder="输入已注册邮箱"></div>
+            <div class="form-group"><input class="form-control" name="user_password" type="password" placeholder="输入已注册邮箱"></div>
+            <div class="form-group"><input class="btn btn-primary btn-block" id="login" type="submit" name="login" value="登录"></div>
+        </form>
+    </div>
+    <div class="row justify-content-center"><a class="text-center" href="http://127.0.0.1:8000/register">还没有账号，去注册</a></div>
     <br>
-    <a href="http://127.0.0.1:8000/register">还没有账号，去注册</a>
 </form>
 </div>
 </body>

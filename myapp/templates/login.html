@@ -20,13 +20,12 @@
         <form method="post" class="form-group col-md-3">
             {% csrf_token %}
             <div class="form-group"><input class="form-control" name="user_email" type="text" placeholder="输入已注册邮箱"></div>
-            <div class="form-group"><input class="form-control" name="user_password" type="password" placeholder="输入已注册邮箱"></div>
+            <div class="form-group"><input class="form-control" name="user_password" type="password" placeholder="输入密码"></div>
             <div class="form-group"><input class="btn btn-primary btn-block" id="login" type="submit" name="login" value="登录"></div>
         </form>
     </div>
     <div class="row justify-content-center"><a class="text-center" href="http://127.0.0.1:8000/register">还没有账号，去注册</a></div>
     <br>
-</form>
 </div>
 </body>
 </html>

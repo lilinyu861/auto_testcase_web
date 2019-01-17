@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'auto_testcase_web.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'testdjango',
+        'NAME': 'test-hero',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',

@@ -26,6 +26,10 @@ urlpatterns = [
 
     # tools
     url(r'^tools/$', tools),
+    # actc
+    url(r'^tools/actc/$', actc),
+    # interface test
+    url(r'^tools/interfacetest/$', interfacetest),
 
     # framework
     url(r'^framework/$', framework),

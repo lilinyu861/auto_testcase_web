@@ -11,11 +11,16 @@ class User(models.Model):
         return self.user_name
 
 
-# class Input(models.Model):
-#     # 用户输入信息
-#     type = models.CharField(max_length=100, blank=False, verbose_name='type')
-#     max_len = models.IntegerField(max_length=50)
-#     min_len = models.IntegerField(max_length=50)
+class Interface(models.Model):
+    # 接口测试数据库
+    request_method = models.CharField(max_length=10, blank=False, verbose_name='request_method')
+    interface_url = models.URLField(max_length=100, blank=False, verbose_name='interface_url')
+    header_name = models.CharField(max_length=100, verbose_name='header_name')
+    header_value = models.CharField(max_length=100, verbose_name='header_value')
+    para_name = models.CharField(max_length=100, blank=True, verbose_name='parameter_name')
+    para_value = models.CharField(max_length=100, blank=True, verbose_name='parameter_value')
+    encryption_algorithm = models.CharField(max_length=60, blank=True, verbose_name='encryption_algorithm')
 
-    # def __unicode__(self):
-    #     return self.type
+    def __unicode__(self):
+        return self.interface_url
+

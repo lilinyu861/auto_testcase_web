@@ -70,6 +70,18 @@ def create_testcase(request):
         pass
 
 
-def base(request):
-    return render(request, 'base.html')
+def tools(request):
+    return render(request, 'tools.html')
+
+
+def framework(request):
+    return render(request, 'framework.html')
+
+
+def blog(request):
+    return render(request, 'blog.html')
+
+
+def user(request):
+    return render(request, 'user.html')
 

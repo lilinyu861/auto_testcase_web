@@ -24,14 +24,23 @@ urlpatterns = [
     # index
     url(r'^$', index),
 
-    # login
-    url(r'^login/$', login),
+    # tools
+    url(r'^tools/$', tools),
+
+    # framework
+    url(r'^framework/$', framework),
+
+    # blog
+    url(r'^blog/$', blog),
+
+    # user
+    url(r'^user/$', user),
 
     # register
     url(r'^register/$', register),
 
-    # base
-    url(r'^base/$', base),
+    # login
+    url(r'^login/$', login),
 
     path('admin/', admin.site.urls),
 ]

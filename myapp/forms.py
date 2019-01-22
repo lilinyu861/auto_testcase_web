@@ -21,6 +21,13 @@ class interfaceform(forms.Form):
     encryption_algorithm = forms.CharField(max_length=60)
 
 
+class interfaceform_json(forms.Form):
+    request_method = forms.CharField(max_length=10)
+    interface_url = forms.URLField(max_length=100)
+    headers = forms.CharField(max_length=1000)
+    body = forms.CharField(max_length=1000)
+
+
 # class caseform(forms.Form):
 #     type = forms.CharField(max_length=100)
 #     max_len = forms.IntegerField(max_length=50)

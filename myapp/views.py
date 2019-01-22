@@ -5,7 +5,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render
 from django.template import RequestContext
 from django.contrib import messages
-from myapp.interfacetest.interface_test import Test
+from myapp.interfacetest.interface_test import *
+import json
 
 
 # create views
@@ -77,34 +78,65 @@ def tools(request):
     return render(request, 'tools.html')
 
 
+# # 工具/接口测试工具
+# def interfacetest(request):
+#     if request.method == 'POST':
+#         interface_form = interfaceform(request.POST)
+#         if interface_form.is_valid():
+#             request_method = interface_form.cleaned_data['request_method']
+#             interface_url = interface_form.cleaned_data['interface_url']
+#             header_name = interface_form.cleaned_data['header_name']
+#             header_value = interface_form.cleaned_data['header_value']
+#             para_name = interface_form.cleaned_data['para_name']
+#             para_value = interface_form.cleaned_data['para_value']
+#             if request_method == 'post':
+#                   resp = Test.test_interface_post(request_method, interface_url, header,
+#                                                  body)
+#             if request_method == 'get':
+#                 msg = Test.test_interface_get(request_method, interface_url, header, body)
+#             if request_method == 'patch':
+#                 msg = Test.test_interface_patch(request_method, interface_url, header, body)
+#             if request_method == 'put':
+#                 msg = Test.test_interface_put(request_method, interface_url, header, body)
+#             if request_method == 'delete':
+#                 msg = Test.test_interface_delete(request_method, interface_url, header, body)
+#             return render_to_response('InterfaceTest.html', {'response': resp}, RequestContext(request))
+#     else:
+#         interface_form = interfaceform()
+#         return render_to_response('InterfaceTest.html', {'interface_form': interface_form}, RequestContext(request))
+
+
 # 工具/接口测试工具
 def interfacetest(request):
+    resp1 = "no response"
     if request.method == 'POST':
         interface_form = interfaceform(request.POST)
         if interface_form.is_valid():
-            request_method = interface_form.cleaned_data['request_method']
-            interface_url = interface_form.cleaned_data['interface_url']
-            header_name = interface_form.cleaned_data['header_name']
-            header_value = interface_form.cleaned_data['header_value']
-            para_name = interface_form.cleaned_data['para_name']
-            para_value = interface_form.cleaned_data['para_value']
-            if request_method == 'post':
-                  resp = Test.test_interface_post(request_method, interface_url, header_name, header_value,
-                                                 para_name, para_value)
-            # if request_method == 'get':
-            #     msg = Test.test_interface_get(request_method, interface_url, header_name, header_value, para_name, para_value)
-            # if request_method == 'patch':
-            #     msg = Test.test_interface_patch(request_method, interface_url, header_name, header_value, para_name, para_value)
-            # if request_method == 'put':
-            #     msg = Test.test_interface_put(request_method, interface_url, header_name, header_value, para_name, para_value)
-            # if request_method == 'delete':
-            #     msg = Test.test_interface_delete(request_method, interface_url, header_name, header_value, para_name, para_value)
-            return render_to_response('InterfaceTest.html', {'response': resp}, RequestContext(request))
-    else:
-        interface_form = interfaceform()
+            request_method = interface_form.cleaned_data['request-method']
+            interface_url = interface_form.cleaned_data['request-url']
+            header = interface_form.cleaned_data['request-header']
+            body = interface_form.cleaned_data['request-body']
+            # request_method = request.POST.get('request-method')
+            # interface_url = request.POST.get('request-url')
+            # header = request.POST.get('request-header')
+            # body = request.POST.get('request-body')
+            if request_method == 'POST':
+                resp1 = Test_json.test_interface_post(request_method, interface_url, header, body)
+            if request_method == 'GET':
+                resp1 = Test_json.test_interface_get(request_method, interface_url, header, body)
+            if request_method == 'PATCH':
+                resp1 = Test_json.test_interface_patch(request_method, interface_url, header, body)
+            if request_method == 'PUT':
+                resp1 = Test_json.test_interface_put(request_method, interface_url, header, body)
+            if request_method == 'DELETE':
+                resp1 = Test_json.test_interface_delete(request_method, interface_url, header, body)
+            print(resp1)
         return render_to_response('InterfaceTest.html', {'interface_form': interface_form}, RequestContext(request))
-
-
+    else:
+        interface_form = resp1
+        return render_to_response('InterfaceTest.html', {'interface_form': interface_form}, RequestContext(request))
+    
+    
 def framework(request):
     return render(request, 'framework.html')
 

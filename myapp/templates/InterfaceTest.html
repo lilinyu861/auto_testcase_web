@@ -4,8 +4,56 @@
     <meta charset="UTF-8">
     <title>InterfaceTest</title>
 </head>
-<body>
+<body class="align-items-center">
 {% include 'base.html' %}
-
+{#<script>#}
+{#    function interface() {#}
+{#        var interface_method = document.getElementById('request_method').value;#}
+{#        var interface_url = document.getElementById('request_url').value;#}
+{#        var header = JSON.stringify(document.getElementsByName('request-header').value);#}
+{#        var body = JSON.stringify(document.getElementsByName('request-body').value);#}
+{#        doucument.getElementById('')#}
+{#    }#}
+{#</script>#}
+<div class="container">
+    <div class="row justify-content-center">
+        <form method="post" name="request" class="form-group col-md-3 text-capitalize">
+            <div>
+                <label>请求方式</label>
+                <select name="method" style="width: 320px; height: 26px;">
+                    <option name="request-method" value="POST">POST</option>
+                    <option name="request-method" value="GET">GET</option>
+                    <option name="request-method" value="PUT">PUT</option>
+                    <option name="request-method" value="DELETE">DELETE</option>
+                    <option name="request-method" value="PATCH">PATCH</option>
+                </select>
+            </div>
+            <div class="url">
+                <label>接口地址</label>
+                <input type="url" class="url text-primary" name="request-url" placeholder="请输入接口地址"  style="width: 320px; height: 26px;">
+            </div>
+            <div>
+                <label>header(json 格式数据)</label><br>
+                <textarea class="text text-body" rows="6" cols="40" name="request-header" placeholder="例如{'ContentType': 'json'}"></textarea>
+            </div>
+            <div>
+                <label>body(json 格式数据)</label><br>
+                <textarea class="text text-body" rows="6" cols="40" name="reuqest-body" placeholder="例如{'user':'小明'， 'password':'123123' }"></textarea>
+            </div>
+            <input class="btn btn-block btn-primary" style="width: 320px;" value="发送" type="submit">
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+{#        <div>#}
+{#            <p>Response status_code:</p>#}
+{#        </div><br>#}
+        <div>
+            <label>Response</label><br>
+            <textarea class="text text-body" rows="8" cols="40">{{ resp1 }}</textarea>
+        </div>
+    </div>
+</div>
 </body>
 </html>

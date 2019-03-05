@@ -74,5 +74,27 @@ class LoginTest(unittest.TestCase):
         sleep(2)
 
 
+# 测试接口测试
+class TestInterface(unittest.TestCase):
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+        self.base_url = base_url
+        self.interface_url = self.base_url+'tools/interfacetest/'
+        self.driver.get(self.interface_url)
+        self.driver.maximize_window()
+
+    def tearDown(self):
+        self.driver.close()
+
+    def test_json_data(self):
+        self.driver.find_element_by_name('method').send_keys('GET')
+        self.driver.find_element_by_name('request-url').send_keys('https://www.baidu.com/')
+        self.driver.find_element_by_name('request-header').send_keys('')
+        self.driver.find_element_by_name('request-body').send_keys('')
+        self.driver.find_element_by_name('send_submit').click()
+        print(self.driver.page_source)
+        sleep(2)
+
+
 if __name__ == '__main__':
     unittest.main()
